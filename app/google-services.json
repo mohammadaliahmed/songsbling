@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "839754706613",
+    "firebase_url": "https://songsbling.firebaseio.com",
+    "project_id": "songsbling",
+    "storage_bucket": "songsbling.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:839754706613:android:63f2ec64fa85682f",
+        "android_client_info": {
+          "package_name": "info.songsbling.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "839754706613-q58tc2copoo43ib3vkt9uff284fc2rua.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "info.songsbling.myapplication",
+            "certificate_hash": "6db061e9ddc3e03ba4a4c0f601d2a6c12d00c5c8"
+          }
+        },
+        {
+          "client_id": "839754706613-86r1egrp8ijcqf10qdh2aop91cov5jui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDp9WmJ43Xvw0Rmp96pN_4ibuK67IPJEDk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "839754706613-86r1egrp8ijcqf10qdh2aop91cov5jui.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
