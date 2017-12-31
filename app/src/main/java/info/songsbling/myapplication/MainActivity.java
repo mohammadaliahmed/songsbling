@@ -41,11 +41,12 @@ import com.google.firebase.iid.FirebaseInstanceId;
 public class MainActivity extends AppCompatActivity {
     WebView webView ;
 
-    DatabaseReference mDatabase;
-    String urlToLoad;
+
+
     String active;
     private AdView mAdView;
     private InterstitialAd mInterstitialAd;
+    String urlToLoad="https://songsbling.info/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,26 +68,8 @@ public class MainActivity extends AppCompatActivity {
         mInterstitialAd.setAdUnitId("ca-app-pub-2135153768458971/9415000458");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
-        mDatabase= FirebaseDatabase.getInstance().getReference();
-        mDatabase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                urlToLoad=dataSnapshot.child("url").getValue(String.class);
-                active=dataSnapshot.child("active").getValue(String.class);
+        initWebView(urlToLoad);
 
-                if(active.equals("yes")){
-                    initWebView(urlToLoad);
-                }else{
-                    Toast.makeText(MainActivity.this, "Account not active", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
 
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -120,44 +103,12 @@ public class MainActivity extends AppCompatActivity {
         webView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-//                Toast.makeText(MainActivity.this, "pressed", Toast.LENGTH_SHORT).show();
+
                 return false;
             }
         });
 
 
-        webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                if (URLUtil.isNetworkUrl(url)) {
-                    if (url.contains("intent")) {
-//                        Toast.makeText(MainActivity.this, "wrong url if", Toast.LENGTH_SHORT).show();
-                        return false;
-                    }
-                    return false;
-                } else {
-                    if (url.contains("intent://threads/?vcuid")) {
-                        Uri uri = Uri.parse("https://m.me/");
-
-                        Intent toMessenger = new Intent(Intent.ACTION_VIEW, uri);
-                        startActivity(toMessenger);
-                        finish();
-                        try {
-                            startActivity(toMessenger);
-                        } catch (android.content.ActivityNotFoundException ex) {
-                            Toast.makeText(MainActivity.this, "Please Install Facebook Messenger", Toast.LENGTH_LONG).show();
-                        }
-//                        Toast.makeText(MainActivity.this, "wrong url else", Toast.LENGTH_SHORT).show();
-//                        return false;
-                    }
-
-                }
-//                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-//                startActivity( intent );
-//                return true;
-                return true;
-            }
-        });
 
 
     }
@@ -192,14 +143,6 @@ public class MainActivity extends AppCompatActivity {
 
                             // If this is an image url then download it
                             if(URLUtil.isValidUrl(imgUrl)){
-//                                downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
-//                                Uri uri = Uri.parse(imgUrl);
-//                                DownloadManager.Request request = new DownloadManager.Request(uri);
-//                                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_ONLY_COMPLETION);
-//                                request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,imgUrl);
-//                                Long referene = downloadManager.enqueue(request);
-
-
 //                                 Initialize a new download request
                                 if (mInterstitialAd.isLoaded()) {
                                     mInterstitialAd.show();
